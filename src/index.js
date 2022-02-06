@@ -25,6 +25,9 @@ import {
   Notes
 } from 'spectacle';
 
+import { Sandpack } from "@codesandbox/sandpack-react";
+import "@codesandbox/sandpack-react/dist/index.css";
+
 const formidableLogo =
   'https://avatars2.githubusercontent.com/u/5078602?s=280&v=4';
 
@@ -98,6 +101,15 @@ const Presentation = () => (
           Where you can write your decks in JSX, Markdown, or MDX!
         </Heading>
       </FlexBox>
+    </Slide>
+    <Slide>
+      <Sandpack template="react" theme="monokai-pro"
+        options={{
+          showLineNumbers: true,
+          wrapContent: true,
+          editorHeight: 650,
+        }}
+      />
     </Slide>
     <Slide
       transition={{

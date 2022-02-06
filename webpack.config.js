@@ -48,7 +48,11 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|gif)$/,
         use: [require.resolve('file-loader')]
-      }
+      },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
     ]
   },
   // Default for boilerplate generation.
