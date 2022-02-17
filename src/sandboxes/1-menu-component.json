@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "react": "16.0.0",
+    "react-dom": "16.0.0"
+  },
+  "entry": "/src/index.js",
+  "environment": "parcel",
+  "files": {
+    "/.codesandbox/workspace.json": {
+      "code": "{\n  \"responsive-preview\": {\n    \"Mobile\": [\n      320,\n      675\n    ],\n    \"Tablet\": [\n      1024,\n      765\n    ],\n    \"Desktop\": [\n      1400,\n      800\n    ],\n    \"Desktop  HD\": [\n      1920,\n      1080\n    ]\n  }\n}"
+    },
+    "/index.html": {
+      "code": "<!DOCTYPE html>\n<html>\n  <head>\n    <title>Parcel Sandbox</title>\n    <meta charset=\"UTF-8\" />\n  </head>\n\n  <body>\n    <gdwc-menu\n      branding=\"Menu Web Component\"\n      baseUrl=\"https://dev-ds-demo.pantheonsite.io\"\n      menuId=\"main\"\n      theme=\"horizontal\"\n    />\n\n    <script src=\"src/index.js\"></script>\n  </body>\n</html>\n"
+    },
+    "/package.json": {
+      "code": "{\n  \"name\": \"1-menu-component\",\n  \"version\": \"1.0.0\",\n  \"description\": \"\",\n  \"main\": \"index.html\",\n  \"scripts\": {\n    \"start\": \"parcel index.html --open\",\n    \"build\": \"parcel build index.html\"\n  },\n  \"dependencies\": {\n    \"@gdwc/components\": \"1.0.9\",\n    \"parcel-bundler\": \"^1.6.1\"\n  },\n  \"devDependencies\": {\n    \"@babel/core\": \"7.2.0\",\n    \"typescript\": \"4.4.4\"\n  },\n  \"resolutions\": {\n    \"@babel/preset-env\": \"7.13.8\"\n  },\n  \"keywords\": []\n}"
+    },
+    "/src/index.js": {
+      "code": "import \"@gdwc/components/menu\";\n\nimport \"./styles.css\";\n"
+    },
+    "/src/styles.css": {
+      "code": "body {\n  font-family: sans-serif;\n}\n"
+    }
+  },
+  "main": "/src/index.js"
+}
