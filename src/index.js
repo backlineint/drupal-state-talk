@@ -28,7 +28,9 @@ import {
 import Sandbox from "./components/Sandbox";
 
 // Sandbox Data
-import sb1 from "./sandboxes/1-menu-component";
+import sb1 from "./sandboxes/1-menu-component.json";
+import sb2 from "./sandboxes/2-get-object-fetch.json";
+import sb3 from "./sandboxes/3-include-data-fetch.json";
 
 const formidableLogo =
   "https://avatars2.githubusercontent.com/u/5078602?s=280&v=4";
@@ -187,7 +189,7 @@ const Presentation = () => (
         ---
 
         ## My Component Library Needs:
-        - Easy methods to source data from Drupal
+        - Easy methods to source data from Drupal's JSON:API
         - A solution for managing state across multiple components
 
         🪄 npm install this-must-be-a-solved-problem
@@ -196,9 +198,9 @@ const Presentation = () => (
 
         ## How do other projects handle this?
 
-        - Druxt
-        - Next for Drupal
-        - Other SDK-like libraries
+        - Druxt (Vue) - Custom JSON:API client using Axios, Vuex Store.
+        - Next for Drupal (React) - individual helper functions like getResource, fetch, no opinion on state management
+        - Other SDK-like libraries - drupal-sdk, drupal-js-sdk, others.
         - Custom decoupled projects - often roll their own
 
         ---
@@ -215,8 +217,78 @@ const Presentation = () => (
 
         Could interacting with JSON:API be friendlier for JavaScript developers? 🤔
 
-        Consider developers who aren't familiar with Drupal or the JSON:API spec...
+        How about developers who aren't familiar with Drupal or the JSON:API spec?
+      `}
+    </MarkdownSlideSet>
+    <Slide>
+      <Sandbox config={sb2} openPaths={["/index.js"]}></Sandbox>
+    </Slide>
+    <Slide>
+      <Sandbox config={sb3} openPaths={["/index.js"]}></Sandbox>
+    </Slide>
+    <Slide>
+      <Heading>Avoiding Over-Fetching</Heading>
+      <Text>Side note Drupal JsonApi Params does this really well</Text>
+    </Slide>
+    <Slide>
+      <Sandbox></Sandbox>
+    </Slide>
+    <MarkdownSlideSet>
+      {`
+        ## The GraphQL of it All
+        - GraphQL is really good at this
+        - The (slightly uninformed) state of GraphQL in Drupal
+        - Or do we mention jsonapi params module here?
 
+        ---
+
+        ## Remember Drupal State?
+        One line summary.
+        - Driving Feature
+      `}
+    </MarkdownSlideSet>
+    <Slide>
+      <Sandbox></Sandbox>
+    </Slide>
+    <MarkdownSlide>
+      {`
+        ## Remember Generic Drupal Web Components?
+        If data sourcing and state management is a solved problem, we can focus on what makes our Decoupled Drupal project unique.
+      `}
+    </MarkdownSlide>
+    <Slide>
+      <Sandbox></Sandbox>
+    </Slide>
+    <MarkdownSlideSet>
+      {`
+        ## Where Do We Go From Here?
+        Let's consider how Drupal stands in the JavaScript ecosystem
+
+        ---
+
+        ## Various NPM Search Slides
+      `}
+    </MarkdownSlideSet>
+    <MarkdownSlideSet>
+      {`
+        ## How could we improve this?
+        - Better tools under the @drupal namespace
+        - Better docs
+        - A JS SDK!
+
+        ---
+
+        ## How could we move forward?
+        - Promote things to the @drupal namespace
+
+        ---
+
+        ## Sprint Day
+        - Get ducks in a row by DrupalCon
+
+        ---
+
+        ## Thanks / Questions
 
       `}
     </MarkdownSlideSet>

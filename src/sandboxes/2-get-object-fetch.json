@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "react": "16.0.0",
+    "react-dom": "16.0.0"
+  },
+  "entry": "/src/index.js",
+  "environment": "parcel",
+  "files": {
+    "/.codesandbox/workspace.json": {
+      "code": "{\n  \"responsive-preview\": {\n    \"Mobile\": [\n      320,\n      675\n    ],\n    \"Tablet\": [\n      1024,\n      765\n    ],\n    \"Desktop\": [\n      1400,\n      800\n    ],\n    \"Desktop  HD\": [\n      1920,\n      1080\n    ]\n  }\n}"
+    },
+    "/index.html": {
+      "code": "<!DOCTYPE html>\n<html>\n\n<head>\n\t<title>Parcel Sandbox</title>\n\t<meta charset=\"UTF-8\" />\n</head>\n\n<body>\n\t<div id=\"app\"></div>\n\n\t<script src=\"src/index.js\">\n\t</script>\n</body>\n\n</html>"
+    },
+    "/package.json": {
+      "code": "{\n  \"name\": \"2-get-collection-of-objects-direct-fetch\",\n  \"version\": \"1.0.0\",\n  \"description\": \"\",\n  \"main\": \"index.html\",\n  \"scripts\": {\n    \"start\": \"parcel index.html --open\",\n    \"build\": \"parcel build index.html\"\n  },\n  \"dependencies\": {\n    \"parcel-bundler\": \"^1.6.1\"\n  },\n  \"devDependencies\": {\n    \"@babel/core\": \"7.2.0\"\n  },\n  \"resolutions\": {\n    \"@babel/preset-env\": \"7.13.8\"\n  },\n  \"keywords\": []\n}"
+    },
+    "/src/index.js": {
+      "code": "async function main() {\n  // Fetch the API index\n  const apiIndex = await fetch(\"https://live-contentacms.pantheonsite.io/api\")\n    .then((response) => response.json())\n    .then((data) => data)\n    .catch((error) => console.error(\"API fetch failed\", error));\n\n  // With the result, we can determine the recipes endpoint\n  console.log(\"recipes endpoint: \", apiIndex.links.recipes);\n\n  // Fetch recipes collection from API\n  const recipesFromApi = await fetch(apiIndex.links.recipes)\n    .then((response) => response.json())\n    .then((data) => data)\n    .catch((error) => console.error(\"API fetch failed\", error));\n\n  // With the result we can access an array of recipe objects\n  console.log(\"All recipes\", recipesFromApi.data);\n\n  // And most individual fields under attributes\n  console.log(\n    \"Instructions for a single recipe\",\n    recipesFromApi.data[0].attributes.instructions\n  );\n\n  // What if I later need to get data for a specific resource?\n  // I could fetch the data from the endpoint for that specific resource,\n  // but that would result in a redundant request.\n  const recipeFromApi = await fetch(\n    `${apiIndex.links.recipes}/a542e833-edfe-44a3-a6f1-7358b115af4b`\n  )\n    .then((response) => response.json())\n    .then((data) => data)\n    .catch((error) => console.error(\"API fetch failed\", error));\n\n  // If I stored the data in application state, I could retrieve it\n  // from the recipes collection we previously requested. But I'd still have to\n  // either search for it, or store it in a way that allows for easy access within\n  // the data store.\n  const recipeFromState = recipesFromApi.data.filter((item) => {\n    return item[\"id\"] === \"a542e833-edfe-44a3-a6f1-7358b115af4b\";\n  });\n\n  console.log(recipeFromState);\n\n  document.getElementById(\n    \"app\"\n  ).innerHTML = `See console log for additional debug info.\n<pre>\napiIndex:\n${JSON.stringify(apiIndex, null, 2)}\nrecipesFromApi:\n${JSON.stringify(recipesFromApi, null, 2)}\nrecipeFromApi:\n${JSON.stringify(recipeFromApi, null, 2)}\n  </pre>`;\n}\n\nmain();\n"
+    },
+    "/src/styles.css": {
+      "code": "body {\n  font-family: sans-serif;\n}\n"
+    }
+  },
+  "main": "/src/index.js"
+}
