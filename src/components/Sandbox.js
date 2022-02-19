@@ -8,6 +8,7 @@ export default function Sandbox({
   openPaths = [],
   editorHeight = 650,
   activePath = "",
+  autorun = true,
 }) {
   return (
     <Sandpack
@@ -19,6 +20,7 @@ export default function Sandbox({
         editorHeight,
         openPaths,
         activePath,
+        autorun,
       }}
     />
   );

@@ -31,6 +31,13 @@ import Sandbox from "./components/Sandbox";
 import sb1 from "./sandboxes/1-menu-component.json";
 import sb2 from "./sandboxes/2-get-object-fetch.json";
 import sb3 from "./sandboxes/3-include-data-fetch.json";
+import sb4 from "./sandboxes/4-limit-fields-fetch.json";
+import sb5 from "./sandboxes/5-ds-quickstart.json";
+import sb6 from "./sandboxes/6-include-data.json";
+import sb8 from "./sandboxes/8-query.json";
+
+// Assets
+const pantheon = require("./assets/pantheon.jpg");
 
 const formidableLogo =
   "https://avatars2.githubusercontent.com/u/5078602?s=280&v=4";
@@ -98,7 +105,7 @@ const Presentation = () => (
     </Slide>
     <MarkdownSlide>
       {`
-        # I'm Brian
+        # Brian!
         * I'm a Sr. Software Engineer at Pantheon
         * I'm an Initiative coordinator for Drupal's Decoupled Menus Initiative
         * I live in the Chicago suburbs
@@ -108,11 +115,23 @@ const Presentation = () => (
         brianperry.dev, @bricomedy, d.o: brianperry
       `}
     </MarkdownSlide>
-    <MarkdownSlide>
-      {`
-        # Pantheon slide
-      `}
-    </MarkdownSlide>
+    <Slide
+      backgroundColor="tertiary"
+      backgroundImage="url(https://ok6static.oktacdn.com/fs/bco/7/fs0eurcntlVV4NwN92p7)"
+    >
+      <Heading margin="0px" fontSize="h2" color="primary">
+        Pantheon
+      </Heading>
+      <Grid gridTemplateColumns="1fr 1fr" gridColumnGap={50}>
+        <Box>
+          <Text color="primary">
+            Pantheon is the WebOps platform where marketers and developers drive
+            results, reaching billions globally with Dynamic WordPress and
+            Drupal sites. Learn more at Pantheon.io.
+          </Text>
+        </Box>
+      </Grid>
+    </Slide>
     <MarkdownSlide>
       {`
         # Our Topic: Drupal State
@@ -129,7 +148,7 @@ const Presentation = () => (
     >
       <Heading color="primary">But really...</Heading>
       <Heading color="primary" fontSize="h3">
-        We're going on a winding journey through Drupal's JavaScript ecosystem
+        We're going on a winding journey through Drupal's JavaScript ecosystem.
       </Heading>
     </Slide>
     <Slide>
@@ -146,10 +165,7 @@ const Presentation = () => (
           }
         }
       `}</CodePane>
-      <Text>
-        connectedCallback lifecycle method within web component triggers a
-        fetch...
-      </Text>
+      <Text>connectedCallback lifecycle method triggers a fetch...</Text>
     </Slide>
     <Slide>
       <CodePane language="javascript">{`
@@ -200,7 +216,7 @@ const Presentation = () => (
 
         - Druxt (Vue) - Custom JSON:API client using Axios, Vuex Store.
         - Next for Drupal (React) - individual helper functions like getResource, fetch, no opinion on state management
-        - Other SDK-like libraries - drupal-sdk, drupal-js-sdk, others.
+        - Other SDK-like libraries - drupal-sdk, drupal-js-sdk, etc.
         - Custom decoupled projects - often roll their own
 
         ---
@@ -228,27 +244,56 @@ const Presentation = () => (
     </Slide>
     <Slide>
       <Heading>Avoiding Over-Fetching</Heading>
-      <Text>Side note Drupal JsonApi Params does this really well</Text>
+      <CodePane language="javascript">{`
+        // Will give us all fields on the recipe and the category
+        /api/recipes/a542e833-edfe-44a3-a6f1-7358b115af4b?include=category
+
+        // Closer, but still returns all fields for the category
+        [...]?include=category&fields[recipes]=title,difficulty,instructions,category
+
+        // Specify fields on category
+        [...]?include=category?fields[recipes]=title,difficulty,instructions,category&fields[categories]=name
+      `}</CodePane>
+      <Text>Side note: drupal-jsonapi-params simplifies this</Text>
     </Slide>
     <Slide>
-      <Sandbox></Sandbox>
+      <Sandbox config={sb4} openPaths={["/index.js"]}></Sandbox>
     </Slide>
     <MarkdownSlideSet>
       {`
         ## The GraphQL of it All
-        - GraphQL is really good at this
+        - GraphQL is really good at preventing over fetching.
         - The (slightly uninformed) state of GraphQL in Drupal
-        - Or do we mention jsonapi params module here?
+          - Contributed module
+          - graphql v3 vs v4
 
         ---
 
-        ## Remember Drupal State?
-        One line summary.
-        - Driving Feature
+        ## How Drupal State Solves These Problems
+        - Framework agnostic and universal (server and client)
+        - Retrieve an object from Drupal’s API, then serve all future requests for that object from local state.
+        - Data is represented in a simplified, deserialized structure requiring less existing JSON:API or Drupal knowledge.
+        - Pick and choose individual utility functions like fetchJsonApiEndpoint, translatePath, and fetchToken
+
       `}
     </MarkdownSlideSet>
     <Slide>
-      <Sandbox></Sandbox>
+      <Sandbox config={sb5} openPaths={["/index.js"]}></Sandbox>
+    </Slide>
+    <Slide>
+      <Sandbox config={sb6} openPaths={["/index.js"]}></Sandbox>
+    </Slide>
+    <Slide>Get by path and utility example.</Slide>
+    <Slide>
+      <Sandbox config={sb8} openPaths={["/index.js"]}></Sandbox>
+    </Slide>
+    <Slide>
+      <Heading>Remember Generic Drupal Web Components?</Heading>
+      <CodePane language="javascript">{`
+        if (solvedProblem === "data sourcing and state management") {
+          const weCanFocusOn = "what makes our Decoupled Drupal project unique";
+        }
+      `}</CodePane>
     </Slide>
     <MarkdownSlide>
       {`
@@ -256,13 +301,12 @@ const Presentation = () => (
         If data sourcing and state management is a solved problem, we can focus on what makes our Decoupled Drupal project unique.
       `}
     </MarkdownSlide>
-    <Slide>
-      <Sandbox></Sandbox>
-    </Slide>
+    <Slide>Web component client and query example.</Slide>
     <MarkdownSlideSet>
       {`
         ## Where Do We Go From Here?
-        Let's consider how Drupal stands in the JavaScript ecosystem
+
+        How Drupal stands in the wider JavaScript ecosystem: an unscientific survey.
 
         ---
 

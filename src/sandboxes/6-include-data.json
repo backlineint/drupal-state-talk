@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "react": "16.0.0",
+    "react-dom": "16.0.0"
+  },
+  "entry": "/src/index.js",
+  "environment": "parcel",
+  "files": {
+    "/.codesandbox/workspace.json": {
+      "code": "{\n  \"responsive-preview\": {\n    \"Mobile\": [\n      320,\n      675\n    ],\n    \"Tablet\": [\n      1024,\n      765\n    ],\n    \"Desktop\": [\n      1400,\n      800\n    ],\n    \"Desktop  HD\": [\n      1920,\n      1080\n    ]\n  }\n}"
+    },
+    "/index.html": {
+      "code": "<!DOCTYPE html>\n<html>\n\n<head>\n\t<title>Parcel Sandbox</title>\n\t<meta charset=\"UTF-8\" />\n</head>\n\n<body>\n\t<div id=\"app\"></div>\n\n\t<script src=\"src/index.js\">\n\t</script>\n</body>\n\n</html>"
+    },
+    "/package.json": {
+      "code": "{\n  \"name\": \"6-including-related-data\",\n  \"version\": \"1.0.0\",\n  \"description\": \"\",\n  \"main\": \"index.html\",\n  \"scripts\": {\n    \"start\": \"parcel index.html --open\",\n    \"build\": \"parcel build index.html\"\n  },\n  \"dependencies\": {\n    \"@gdwc/drupal-state\": \"1.0.28\",\n    \"parcel-bundler\": \"^1.6.1\"\n  },\n  \"devDependencies\": {\n    \"@babel/core\": \"7.2.0\"\n  },\n  \"resolutions\": {\n    \"@babel/preset-env\": \"7.13.8\"\n  },\n  \"keywords\": []\n}"
+    },
+    "/src/index.js": {
+      "code": "import { DrupalState } from \"@gdwc/drupal-state\";\n\nconst store = new DrupalState({\n  apiRoot: \"https://live-contentacms.pantheonsite.io/api\",\n  debug: true\n});\n\nasync function main() {\n  // Add an include parameter to include relationship data\n  store.params.addInclude([\"category\"]);\n  const recipe = await store.getObject({\n    objectName: \"recipes\",\n    id: \"a542e833-edfe-44a3-a6f1-7358b115af4b\"\n  });\n\n  // Fields for the recipe category are now available on the recipe object.\n  const recipeCategory = recipe.category.name;\n\n  document.getElementById(\n    \"app\"\n  ).innerHTML = `See console log for additional debug info.\n<pre>Recipe category: ${JSON.stringify(recipeCategory, null, 2)}\nRecipe:\n${JSON.stringify(recipe, null, 2)}\n</pre>`;\n}\n\nmain();\n"
+    },
+    "/src/styles.css": {
+      "code": "body {\n  font-family: sans-serif;\n}\n"
+    }
+  },
+  "main": "/src/index.js"
+}
