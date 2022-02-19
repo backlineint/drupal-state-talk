@@ -34,10 +34,19 @@ import sb3 from "./sandboxes/3-include-data-fetch.json";
 import sb4 from "./sandboxes/4-limit-fields-fetch.json";
 import sb5 from "./sandboxes/5-ds-quickstart.json";
 import sb6 from "./sandboxes/6-include-data.json";
+import sb7 from "./sandboxes/7-by-path.json";
+import sb7a from "./sandboxes/7a-path-util.json";
 import sb8 from "./sandboxes/8-query.json";
 
 // Assets
 const pantheon = require("./assets/pantheon.jpg");
+const npmDrupal = require("./assets/drupal-npm.png");
+const npmAtDrupal = require("./assets/@drupal-npm.png");
+const wp = require("./assets/wp.png");
+const aem = require("./assets/aem.png");
+const sitecore = require("./assets/sitecore.png");
+const contentful = require("./assets/contentful.png");
+const pyramid = require("./assets/pyramid.png");
 
 const formidableLogo =
   "https://avatars2.githubusercontent.com/u/5078602?s=280&v=4";
@@ -99,7 +108,7 @@ const Presentation = () => (
         <Heading margin="0px 32px" color="primary" fontSize="h3">
           Brian Perry
           <br />
-          Florida Drupal Camp - Feb 18, 2022
+          Florida Drupal Camp - Feb 19, 2022
         </Heading>
       </FlexBox>
     </Slide>
@@ -283,7 +292,38 @@ const Presentation = () => (
     <Slide>
       <Sandbox config={sb6} openPaths={["/index.js"]}></Sandbox>
     </Slide>
-    <Slide>Get by path and utility example.</Slide>
+    <Slide>
+      <Sandbox config={sb7} openPaths={["/index.js"]}></Sandbox>
+    </Slide>
+    <Slide>
+      <Sandbox config={sb7a} openPaths={["/index.js"]}></Sandbox>
+    </Slide>
+    <Slide>
+      <CodePane language="javascript">{`
+import { ServerResponse } from 'http';
+import fetchJsonapiEndpoint from './fetchJsonapiEndpoint';
+import defaultFetch from './defaultFetch';
+import { TJsonApiBody } from 'jsona/lib/JsonaTypes';
+import { fetchAdapter } from '../types/types';
+
+const translatePath = async (
+  apiUrl: string,
+  path: string,
+  requestInit = {},
+  _res: ServerResponse | boolean = false,
+  fetch: fetchAdapter = defaultFetch
+): Promise<void | TJsonApiBody> => {
+  const response = (await fetchJsonapiEndpoint(
+    apiUrl + '?path=' + path + '&_format=json',
+    requestInit,
+    _res,
+    fetch
+  )) as TJsonApiBody;
+  return response;
+};
+export default translatePath;
+      `}</CodePane>
+    </Slide>
     <Slide>
       <Sandbox config={sb8} openPaths={["/index.js"]}></Sandbox>
     </Slide>
@@ -295,225 +335,102 @@ const Presentation = () => (
         }
       `}</CodePane>
     </Slide>
-    <MarkdownSlide>
-      {`
-        ## Remember Generic Drupal Web Components?
-        If data sourcing and state management is a solved problem, we can focus on what makes our Decoupled Drupal project unique.
-      `}
-    </MarkdownSlide>
-    <Slide>Web component client and query example.</Slide>
+    <Slide>
+      <CodePane language="html">{`
+        <gdwc-client
+        apiBase="https://live-contentacms.pantheonsite.io"
+        apiPrefix="api"
+      >
+        <gdwc-query
+          objectName="recipes"
+          include="image,image.thumbnail"
+          query=\${\`{
+              body: instructions
+              headline: title
+              id
+              path {
+                linkHref: alias
+              }
+              image {
+                thumbnail {
+                  imageSrc: url
+                }
+              }
+            }\`}>
+          <gdwc-card id="a542e833-edfe-44a3-a6f1-7358b115af4b"></gdwc-card>
+          <gdwc-card id="ff85086b-db11-4ba6-8eaf-5197d6ad026c"></gdwc-card>
+        </gdwc-query>
+      </gdwc-client>
+      `}</CodePane>
+    </Slide>
     <MarkdownSlideSet>
       {`
         ## Where Do We Go From Here?
 
         How Drupal stands in the wider JavaScript ecosystem: an unscientific survey.
-
-        ---
-
-        ## Various NPM Search Slides
       `}
     </MarkdownSlideSet>
+    <Slide>
+      <Image
+        src={npmDrupal.default}
+        style={{ width: "auto", height: "100%" }}
+      />
+    </Slide>
+    <Slide>
+      <Image
+        src={npmAtDrupal.default}
+        style={{ width: "auto", height: "100%" }}
+      />
+    </Slide>
+    <Slide>
+      <Image src={wp.default} style={{ width: "auto", height: "100%" }} />
+    </Slide>
+    <Slide>
+      <Image src={aem.default} style={{ width: "auto", height: "100%" }} />
+    </Slide>
+    <Slide>
+      <Image src={sitecore.default} style={{ width: "auto", height: "100%" }} />
+    </Slide>
+    <Slide>
+      <Image
+        src={contentful.default}
+        style={{ width: "auto", height: "100%" }}
+      />
+    </Slide>
     <MarkdownSlideSet>
       {`
         ## How could we improve this?
-        - Better tools under the @drupal namespace
-        - Better docs
-        - A JS SDK!
-
-        ---
-
-        ## How could we move forward?
-        - Promote things to the @drupal namespace
-
-        ---
-
-        ## Sprint Day
-        - Get ducks in a row by DrupalCon
-
-        ---
-
-        ## Thanks / Questions
-
-      `}
-    </MarkdownSlideSet>
-    <Slide
-      transition={{
-        from: {
-          transform: "scale(0.5) rotate(45deg)",
-          opacity: 0,
-        },
-        enter: {
-          transform: "scale(1) rotate(0)",
-          opacity: 1,
-        },
-        leave: {
-          transform: "scale(0.2) rotate(315deg)",
-          opacity: 0,
-        },
-      }}
-      backgroundColor="tertiary"
-      backgroundImage="url(https://github.com/FormidableLabs/dogs/blob/main/src/beau.jpg?raw=true)"
-      backgroundOpacity={0.5}
-    >
-      <Heading>Custom Backgrounds</Heading>
-      <UnorderedList>
-        <ListItem>
-          <CodeSpan>backgroundColor</CodeSpan>
-        </ListItem>
-        <ListItem>
-          <CodeSpan>backgroundImage</CodeSpan>
-        </ListItem>
-        <ListItem>
-          <CodeSpan>backgroundOpacity</CodeSpan>
-        </ListItem>
-        <ListItem>
-          <CodeSpan>backgroundSize</CodeSpan>
-        </ListItem>
-        <ListItem>
-          <CodeSpan>backgroundPosition</CodeSpan>
-        </ListItem>
-        <ListItem>
-          <CodeSpan>backgroundRepeat</CodeSpan>
-        </ListItem>
-      </UnorderedList>
-    </Slide>
-    <Slide>
-      <Heading>Animated Elements</Heading>
-      <OrderedList>
-        <Appear>
-          <ListItem>Elements can animate in!</ListItem>
-        </Appear>
-        <Appear>
-          <ListItem>Out of order</ListItem>
-        </Appear>
-        <Appear priority={0}>
-          <ListItem>
-            Just identify the order with the prop <CodeSpan>priority</CodeSpan>!
-          </ListItem>
-        </Appear>
-      </OrderedList>
-    </Slide>
-    <Slide>
-      <FlexBox>
-        <Text>These</Text>
-        <Text>Text</Text>
-        <Text color="secondary">Items</Text>
-        <Text fontWeight="bold">Flex</Text>
-      </FlexBox>
-      <Grid gridTemplateColumns="1fr 2fr" gridColumnGap={15}>
-        <Box backgroundColor="primary">
-          <Text color="secondary">Single-size Grid Item</Text>
-        </Box>
-        <Box backgroundColor="secondary">
-          <Text>Double-size Grid Item</Text>
-        </Box>
-      </Grid>
-      <Grid
-        gridTemplateColumns="1fr 1fr 1fr"
-        gridTemplateRows="1fr 1fr 1fr"
-        alignItems="center"
-        justifyContent="center"
-        gridRowGap={1}
-      >
-        {Array(9)
-          .fill("")
-          .map((_, index) => (
-            <FlexBox paddingTop={0} key={`formidable-logo-${index}`} flex={1}>
-              <Image src={formidableLogo} width={100} />
-            </FlexBox>
-          ))}
-      </Grid>
-    </Slide>
-    <SlideFragments />
-    <Slide>
-      <CodePane language="jsx">{`
-        import { createClient, Provider } from 'urql';
-
-        const client = createClient({ url: 'https://0ufyz.sse.codesandbox.io' });
-
-        const App = () => (
-          <Provider value={client}>
-            <Todos />
-          </Provider>
-        );
-        `}</CodePane>
-      <Box height={20} />
-      <CodePane language="java" showLineNumbers={false}>{`
-        public class NoLineNumbers {
-          public static void main(String[] args) {
-            System.out.println("Hello");
-          }
-        }
-        `}</CodePane>
-    </Slide>
-    <div>
-      <Slide>
-        <Heading>This is a slide embedded in a div</Heading>
-      </Slide>
-    </div>
-    <MarkdownSlide componentProps={{ color: "yellow" }}>
-      {`
-        # This is a Markdown Slide
-
-        - You can pass props down to all elements on the slide.
-        - Just use the \`componentProps\` prop.
+        - More tools under the @drupal namespace
+        - Improved documentation
+        - A JavaScript SDK for Drupal
         `}
-    </MarkdownSlide>
-    <MarkdownSlide animateListItems>
-      {`
-       # This is also a Markdown Slide
-
-       It uses the \`animateListItems\` prop.
-
-       - Its list items...
-       - ...will appear...
-       - ...one at a time.
-      `}
-    </MarkdownSlide>
+    </MarkdownSlideSet>
     <Slide>
-      <Grid
-        flex={1}
-        gridTemplateColumns="50% 50%"
-        gridTemplateRows="50% 50%"
-        height="100%"
-      >
-        <FlexBox alignItems="center" justifyContent="center">
-          <Heading>This is a 4x4 Grid</Heading>
-        </FlexBox>
-        <FlexBox alignItems="center" justifyContent="center">
-          <Text textAlign="center">
-            With all the content aligned and justified center.
-          </Text>
-        </FlexBox>
-        <FlexBox alignItems="center" justifyContent="center">
-          <Text textAlign="center">
-            It uses Spectacle <CodeSpan>{"<Grid />"}</CodeSpan> and{" "}
-            <CodeSpan>{"<FlexBox />"}</CodeSpan> components.
-          </Text>
-        </FlexBox>
-        <FlexBox alignItems="center" justifyContent="center">
-          <Box width={200} height={200} backgroundColor="secondary" />
-        </FlexBox>
-      </Grid>
-    </Slide>
-    <Slide>
-      <FlexBox height="100%">
-        <SpectacleLogo size={500} />
-      </FlexBox>
-      <Notes>
-        Spectacle supports notes per slide.
-        <ol>
-          <li>Notes can now be HTML markup!</li>
-          <li>Lists can make it easier to make points.</li>
-        </ol>
-      </Notes>
+      <Image src={pyramid.default} style={{ width: "auto", height: "100%" }} />
     </Slide>
     <MarkdownSlideSet>
       {`
-        # This is the first slide of a Markdown Slide Set
+
+        ## How could we move forward?
+        - Promote existing projects to the @drupal namespace
+        - Develop plan to build new SDK like utilities
+        - Documentation efforts within Decoupled Menus Initiative
+
         ---
-        # This is the second slide of a Markdown Slide Set
-        `}
+
+        ## Contribution Day
+        - Issues in Drupal State queue.
+        - Get ducks in a row for DrupalCon.
+
+        ---
+
+        # Questions?
+
+        @bricomedy
+
+        brian.perry@pantheon.io
+
+      `}
     </MarkdownSlideSet>
   </Deck>
 );
