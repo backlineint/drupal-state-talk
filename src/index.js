@@ -100,7 +100,7 @@ const Presentation = () => (
     <Slide>
       <FlexBox height="100%" flexDirection="column">
         <Heading margin="0px" fontSize="150px">
-          🐊 <i>Drupal State</i> 🐊
+          🦊 <i>Drupal State</i> 🦊
         </Heading>
         <Heading margin="0px" fontSize="h2">
           and the Need for a JavaScript SDK
@@ -108,7 +108,7 @@ const Presentation = () => (
         <Heading margin="0px 32px" color="primary" fontSize="h3">
           Brian Perry
           <br />
-          Florida Drupal Camp - Feb 19, 2022
+          Fox Valley Drupal - Mar 16, 2022
         </Heading>
       </FlexBox>
     </Slide>
@@ -261,7 +261,7 @@ const Presentation = () => (
         [...]?include=category&fields[recipes]=title,difficulty,instructions,category
 
         // Specify fields on category
-        [...]?include=category?fields[recipes]=title,difficulty,instructions,category&fields[categories]=name
+        [...]?include=category&fields[recipes]=title,difficulty,instructions,category&fields[categories]=name
       `}</CodePane>
       <Text>Side note: drupal-jsonapi-params simplifies this</Text>
     </Slide>
@@ -418,9 +418,10 @@ export default translatePath;
 
         ---
 
-        ## Contribution Day
-        - Issues in Drupal State queue.
-        - Get ducks in a row for DrupalCon.
+        ## Contribution
+        - Issues in Drupal State queue
+        - Get ducks in a row for DrupalCon
+        - Documentation / Decoupled Menus Initiative
 
         ---
 
