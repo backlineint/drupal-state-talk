@@ -100,7 +100,7 @@ const Presentation = () => (
     <Slide>
       <FlexBox height="100%" flexDirection="column">
         <Heading margin="0px" fontSize="150px">
-          🦊 <i>Drupal State</i> 🦊
+          <i>Drupal State</i>
         </Heading>
         <Heading margin="0px" fontSize="h2">
           and the Need for a JavaScript SDK
@@ -108,7 +108,6 @@ const Presentation = () => (
         <Heading margin="0px 32px" color="primary" fontSize="h3">
           Brian Perry
           <br />
-          Fox Valley Drupal - Mar 16, 2022
         </Heading>
       </FlexBox>
     </Slide>
