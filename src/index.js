@@ -218,7 +218,10 @@ const Presentation = () => (
 
         🪄 npm install this-must-be-a-solved-problem
 
-        ---
+      `}
+    </MarkdownSlideSet>
+    <MarkdownSlideSet>
+      {`
 
         ## How do other projects handle this?
 
@@ -275,7 +278,10 @@ const Presentation = () => (
           - Contributed module
           - graphql v3 vs v4
 
-        ---
+        `}
+    </MarkdownSlideSet>
+    <MarkdownSlideSet>
+      {`
 
         ## How Drupal State Solves These Problems
         - Framework agnostic and universal (server and client)
@@ -287,6 +293,9 @@ const Presentation = () => (
     </MarkdownSlideSet>
     <Slide>
       <Sandbox config={sb5} openPaths={["/index.js"]}></Sandbox>
+    </Slide>
+    <Slide>
+      <Sandbox config={sb2} openPaths={["/index.js"]}></Sandbox>
     </Slide>
     <Slide>
       <Sandbox config={sb6} openPaths={["/index.js"]}></Sandbox>
@@ -404,9 +413,9 @@ export default translatePath;
         - A JavaScript SDK for Drupal
         `}
     </MarkdownSlideSet>
-    <Slide>
+    {/* <Slide>
       <Image src={pyramid.default} style={{ width: "auto", height: "100%" }} />
-    </Slide>
+    </Slide> */}
     <MarkdownSlideSet>
       {`
 
@@ -417,21 +426,19 @@ export default translatePath;
 
         ---
 
-        ## Contribution
+        ## Contribution @ DrupalCon
         - Issues in Drupal State queue
-        - Get ducks in a row for DrupalCon
-        - Documentation / Decoupled Menus Initiative
-
-        ---
-
-        # Questions?
-
-        @bricomedy
-
-        brian.perry@pantheon.io
+        - Decoupled Menus Initiative
+          - Core Issue
+          - Documentation
+        - Other ideas? Let's talk!
 
       `}
     </MarkdownSlideSet>
+    <Slide
+      backgroundColor="tertiary"
+      backgroundImage="url(https://slideplayer.com/slide/269033/1/images/15/Discussion+Time%21.jpg)"
+    ></Slide>
   </Deck>
 );
 
