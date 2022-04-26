@@ -37,6 +37,7 @@ import sb6 from "./sandboxes/6-include-data.json";
 import sb7 from "./sandboxes/7-by-path.json";
 import sb7a from "./sandboxes/7a-path-util.json";
 import sb8 from "./sandboxes/8-query.json";
+import sb9 from "./sandboxes/9-provider.json";
 
 // Assets
 const pantheon = require("./assets/pantheon.jpg");
@@ -47,6 +48,7 @@ const aem = require("./assets/aem.png");
 const sitecore = require("./assets/sitecore.png");
 const contentful = require("./assets/contentful.png");
 const pyramid = require("./assets/pyramid.png");
+const title = require("./assets/dc-title.png");
 
 const formidableLogo =
   "https://avatars2.githubusercontent.com/u/5078602?s=280&v=4";
@@ -97,20 +99,10 @@ const SlideFragments = () => (
 
 const Presentation = () => (
   <Deck theme={theme} template={template}>
-    <Slide>
-      <FlexBox height="100%" flexDirection="column">
-        <Heading margin="0px" fontSize="150px">
-          <i>Drupal State</i>
-        </Heading>
-        <Heading margin="0px" fontSize="h2">
-          and the Need for a JavaScript SDK
-        </Heading>
-        <Heading margin="0px 32px" color="primary" fontSize="h3">
-          Brian Perry
-          <br />
-        </Heading>
-      </FlexBox>
-    </Slide>
+    <Slide
+      backgroundColor="tertiary"
+      backgroundImage={`url(${title.default})`}
+    ></Slide>
     <MarkdownSlide>
       {`
         # Brian!
@@ -118,7 +110,7 @@ const Presentation = () => (
         * I'm an Initiative coordinator for Drupal's Decoupled Menus Initiative
         * I live in the Chicago suburbs
         * I enjoy Drupal, JavaScript, and Nintendo
-        * I recently bought a Ms. Pac-Man machine
+        * I semi-recently bought a Ms. Pac-Man machine
 
         brianperry.dev, @bricomedy, d.o: brianperry
       `}
@@ -226,7 +218,7 @@ const Presentation = () => (
         ## How do other projects handle this?
 
         - Druxt (Vue) - Custom JSON:API client using Axios, Vuex Store.
-        - Next for Drupal (React) - individual helper functions like getResource, fetch, no opinion on state management
+        - Next for Drupal (React) - < v1.3 uses individual helper functions like getResource, fetch. v1.3 introduces DrupalClient. BYO cache implementation.
         - Other SDK-like libraries - drupal-sdk, drupal-js-sdk, etc.
         - Custom decoupled projects - often roll their own
 
@@ -344,32 +336,7 @@ export default translatePath;
       `}</CodePane>
     </Slide>
     <Slide>
-      <CodePane language="html">{`
-        <gdwc-client
-        apiBase="https://live-contentacms.pantheonsite.io"
-        apiPrefix="api"
-      >
-        <gdwc-query
-          objectName="recipes"
-          include="image,image.thumbnail"
-          query=\${\`{
-              body: instructions
-              headline: title
-              id
-              path {
-                linkHref: alias
-              }
-              image {
-                thumbnail {
-                  imageSrc: url
-                }
-              }
-            }\`}>
-          <gdwc-card id="a542e833-edfe-44a3-a6f1-7358b115af4b"></gdwc-card>
-          <gdwc-card id="ff85086b-db11-4ba6-8eaf-5197d6ad026c"></gdwc-card>
-        </gdwc-query>
-      </gdwc-client>
-      `}</CodePane>
+      <Sandbox config={sb9} openPaths={["/index.html"]}></Sandbox>
     </Slide>
     <MarkdownSlideSet>
       {`
@@ -394,9 +361,6 @@ export default translatePath;
       <Image src={wp.default} style={{ width: "auto", height: "100%" }} />
     </Slide>
     <Slide>
-      <Image src={aem.default} style={{ width: "auto", height: "100%" }} />
-    </Slide>
-    <Slide>
       <Image src={sitecore.default} style={{ width: "auto", height: "100%" }} />
     </Slide>
     <Slide>
@@ -409,8 +373,8 @@ export default translatePath;
       {`
         ## How could we improve this?
         - More tools under the @drupal namespace
-        - Improved documentation
-        - A JavaScript SDK for Drupal
+        - An official Drupal JavaScript SDK / Client
+        - Decoupled Drupal documentation on Drupal.org
         `}
     </MarkdownSlideSet>
     {/* <Slide>
@@ -419,19 +383,25 @@ export default translatePath;
     <MarkdownSlideSet>
       {`
 
-        ## How could we move forward?
+        ## Possible Next Steps
         - Promote existing projects to the @drupal namespace
+          - Start with https://www.npmjs.com/package/drupal-jsonapi-params?
         - Develop plan to build new SDK like utilities
+          - https://www.drupal.org/project/ideas/issues/3277222
         - Documentation efforts within Decoupled Menus Initiative
+          - https://www.drupal.org/project/documentation/issues/3276081
+          -
 
         ---
 
-        ## Contribution @ DrupalCon
-        - Issues in Drupal State queue
+        ## Contribution @ DrupalCon (and beyond)
+        - Issues in [Drupal State queue](https://www.drupal.org/project/issues/drupal_state?categories=All)
+        - [Drupal JS Client Ideas queue issue](https://www.drupal.org/project/ideas/issues/3277222)
         - Decoupled Menus Initiative
-          - Core Issue
-          - Documentation
-        - Other ideas? Let's talk!
+          - [Core Menu Endpoint Issue](https://www.drupal.org/project/drupal/issues/3227824)
+          - [Finalize Documentation](https://www.drupal.org/project/decoupled_menus_initiative/issues/3263181)
+        - [GDWC Components](https://www.drupal.org/project/gdwc/issues/3207883)
+        - Other ideas? I'll be in general contribution - let's talk!
 
       `}
     </MarkdownSlideSet>
