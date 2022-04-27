@@ -286,9 +286,9 @@ const Presentation = () => (
     <Slide>
       <Sandbox config={sb5} openPaths={["/index.js"]}></Sandbox>
     </Slide>
-    <Slide>
+    {/* <Slide>
       <Sandbox config={sb2} openPaths={["/index.js"]}></Sandbox>
-    </Slide>
+    </Slide> */}
     <Slide>
       <Sandbox config={sb6} openPaths={["/index.js"]}></Sandbox>
     </Slide>
@@ -390,7 +390,6 @@ export default translatePath;
           - https://www.drupal.org/project/ideas/issues/3277222
         - Documentation efforts within Decoupled Menus Initiative
           - https://www.drupal.org/project/documentation/issues/3276081
-          -
 
         ---
 
