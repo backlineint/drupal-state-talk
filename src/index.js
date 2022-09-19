@@ -99,9 +99,10 @@ const SlideFragments = () => (
 
 const Presentation = () => (
   <Deck theme={theme} template={template}>
-    <Slide backgroundColor="tertiary" backgroundImage={`url(${title.default})`}>
-      Hey
-    </Slide>
+    <Slide
+      backgroundColor="tertiary"
+      backgroundImage={`url(${title.default})`}
+    ></Slide>
     <MarkdownSlide>
       {`
         # Brian!
