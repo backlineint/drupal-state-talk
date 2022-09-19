@@ -388,8 +388,8 @@ export default translatePath;
 
         ## Possible Next Steps
         - Promote existing projects to the @drupal namespace
-          - Start with decoupled-menus-parser
-          - https://www.npmjs.com/package/drupal-jsonapi-params next?
+          - Start with decoupled-menus-parser / linkset
+          - https://www.npmjs.com/package/drupal-jsonapi-params?
         - Develop plan to build new SDK like utilities
           - https://www.drupal.org/project/ideas/issues/3277222
         - Documentation efforts within Decoupled Menus Initiative
@@ -404,7 +404,7 @@ export default translatePath;
           - [Core Menu Endpoint Issue](https://www.drupal.org/project/drupal/issues/3227824)
           - [Finalize Documentation](https://www.drupal.org/project/decoupled_menus_initiative/issues/3263181)
         - [GDWC Components](https://www.drupal.org/project/gdwc/issues/3207883)
-        - Other ideas? I'll be in general contribution - let's talk!
+        - Other ideas? I'll be in general contribution (Room C2 + C3) - let's talk!
 
       `}
     </MarkdownSlideSet>

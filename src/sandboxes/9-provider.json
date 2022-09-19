@@ -10,16 +10,16 @@
       "code": "{\n  \"responsive-preview\": {\n    \"Mobile\": [\n      320,\n      675\n    ],\n    \"Tablet\": [\n      1024,\n      765\n    ],\n    \"Desktop\": [\n      1400,\n      800\n    ],\n    \"Desktop  HD\": [\n      1920,\n      1080\n    ]\n  }\n}"
     },
     "/index.html": {
-      "code": "<!DOCTYPE html>\n<html>\n  <head>\n    <title>Parcel Sandbox</title>\n    <meta charset=\"UTF-8\" />\n  </head>\n\n  <body>\n    <gdwc-store\n      apiBase=\"https://dev-ds-demo.pantheonsite.io\"\n      defaultLocale=\"en\"\n    >\n      <gdwc-provider\n        objectName=\"node--recipe\"\n        id=\"33386d32-a87c-44b9-b66b-3dd0bfc38dca\"\n        include=\"field_media_image.field_media_image\"\n      >\n        <template>\n          This template has access to the provider scope.\n        </template>\n      </gdwc-provider>\n    </gdwc-store>\n    <script src=\"src/index.js\"></script>\n  </body>\n</html>\n\n<!-- <template>\n  <gdwc-card\n    imgSrc=\"https://dev-ds-demo.pantheonsite.io{{field_media_image.field_media_image.uri.url }}\"\n  >\n    {{ field_summary.processed }}\n  </gdwc-card>\n</template> -->\n"
+      "code": "<!DOCTYPE html>\n<html>\n  <head>\n    <title>Parcel Sandbox</title>\n    <meta charset=\"UTF-8\" />\n  </head>\n\n  <body>\n    <gdwc-store\n      apiBase=\"https://dev-ds-demo.pantheonsite.io\"\n      defaultLocale=\"en\"\n    >\n      <gdwc-provider\n        objectName=\"node--recipe\"\n        id=\"33386d32-a87c-44b9-b66b-3dd0bfc38dca\"\n        include=\"field_media_image.field_media_image\"\n      >\n        <template>\n          <!-- <style>\n            :host {\n              display: grid;\n              grid-template-columns: 1fr 1fr;\n              grid-gap: 1rem;\n              /* --gdwc-shadow: var(--shadow-6);\n              --gdwc-text-1: rebeccapurple;\n              --gdwc-border-radius: var(--radius-3); */\n            }\n          </style> -->\n          <gdwc-card\n            headline=\"Title Goes Here\"\n            imgSrc=\"https://dev-ds-demo.pantheonsite.io{{field_media_image.field_media_image.uri.url }}\"\n          >\n            {{ field_summary.processed }}\n          </gdwc-card>\n          <hr />\n          <h4>Template has access to provider scope.</h4>\n          <p>And any markup can be included in the template</p>\n          <hr />\n        </template>\n      </gdwc-provider>\n    </gdwc-store>\n    <script src=\"src/index.js\"></script>\n  </body>\n</html>\n"
     },
     "/package.json": {
-      "code": "{\n  \"name\": \"8-provider\",\n  \"version\": \"1.0.0\",\n  \"description\": \"\",\n  \"main\": \"index.html\",\n  \"scripts\": {\n    \"start\": \"parcel index.html --open\",\n    \"build\": \"parcel build index.html\"\n  },\n  \"dependencies\": {\n    \"@gdwc/components\": \"3.0.1\",\n    \"parcel-bundler\": \"^1.6.1\"\n  },\n  \"devDependencies\": {\n    \"@babel/core\": \"7.2.0\",\n    \"typescript\": \"4.4.4\"\n  },\n  \"resolutions\": {\n    \"@babel/preset-env\": \"7.13.8\"\n  },\n  \"keywords\": []\n}"
+      "code": "{\n  \"name\": \"8-provider\",\n  \"version\": \"1.0.0\",\n  \"description\": \"\",\n  \"main\": \"index.html\",\n  \"scripts\": {\n    \"start\": \"parcel index.html --open\",\n    \"build\": \"parcel build index.html\"\n  },\n  \"dependencies\": {\n    \"@gdwc/components\": \"3.6.0\",\n    \"parcel-bundler\": \"^1.6.1\"\n  },\n  \"devDependencies\": {\n    \"@babel/core\": \"7.2.0\",\n    \"typescript\": \"4.4.4\"\n  },\n  \"resolutions\": {\n    \"@babel/preset-env\": \"7.13.8\"\n  },\n  \"keywords\": []\n}"
     },
     "/src/index.js": {
       "code": "import \"@gdwc/components\";\n\nimport \"./styles.css\";\n"
     },
     "/src/styles.css": {
-      "code": "body {\n  font-family: sans-serif;\n}\n"
+      "code": "@import \"https://unpkg.com/open-props\";\n@import \"https://unpkg.com/open-props/normalize.min.css\";\n\nbody {\n  font-family: sans-serif;\n}\n"
     }
   },
   "is_sse": false,
