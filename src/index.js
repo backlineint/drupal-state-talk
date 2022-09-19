@@ -269,6 +269,8 @@ const Presentation = () => (
         - The (slightly uninformed) state of GraphQL in Drupal
           - Contributed module
           - graphql v3 vs v4
+          - Drupal State query feature (deprecated)
+          - [GraphQL Compose Module](https://www.drupal.org/project/graphql_compose)
 
         `}
     </MarkdownSlideSet>
@@ -277,9 +279,10 @@ const Presentation = () => (
 
         ## How Drupal State Solves These Problems
         - Framework agnostic and universal (server and client)
-        - Retrieve an object from Drupal’s API, then serve all future requests for that object from local state.
-        - Data is represented in a simplified, deserialized structure requiring less existing JSON:API or Drupal knowledge.
-        - Pick and choose individual utility functions like fetchJsonApiEndpoint, translatePath, and fetchToken
+        - Retrieve an object from Drupal’s API, serve future requests from local state.
+        - Data is represented in a simplified, deserialized structure
+        - Pick and choose individual utility functions
+          - fetchJsonApiEndpoint, translatePath, and fetchToken, etc.
 
       `}
     </MarkdownSlideSet>

@@ -13,14 +13,15 @@
       "code": "<!DOCTYPE html>\n<html>\n\n<head>\n\t<title>Parcel Sandbox</title>\n\t<meta charset=\"UTF-8\" />\n</head>\n\n<body>\n\t<div id=\"app\"></div>\n\n\t<script src=\"src/index.js\">\n\t</script>\n</body>\n\n</html>"
     },
     "/package.json": {
-      "code": "{\n  \"name\": \"6-including-related-data\",\n  \"version\": \"1.0.0\",\n  \"description\": \"\",\n  \"main\": \"index.html\",\n  \"scripts\": {\n    \"start\": \"parcel index.html --open\",\n    \"build\": \"parcel build index.html\"\n  },\n  \"dependencies\": {\n    \"@gdwc/drupal-state\": \"1.0.28\",\n    \"parcel-bundler\": \"^1.6.1\"\n  },\n  \"devDependencies\": {\n    \"@babel/core\": \"7.2.0\"\n  },\n  \"resolutions\": {\n    \"@babel/preset-env\": \"7.13.8\"\n  },\n  \"keywords\": []\n}"
+      "code": "{\n  \"name\": \"6-including-related-data\",\n  \"version\": \"1.0.0\",\n  \"description\": \"\",\n  \"main\": \"index.html\",\n  \"scripts\": {\n    \"start\": \"parcel index.html --open\",\n    \"build\": \"parcel build index.html\"\n  },\n  \"dependencies\": {\n    \"@gdwc/drupal-state\": \"4.0.1\",\n    \"parcel-bundler\": \"^1.6.1\"\n  },\n  \"devDependencies\": {\n    \"@babel/core\": \"7.2.0\"\n  },\n  \"resolutions\": {\n    \"@babel/preset-env\": \"7.13.8\"\n  },\n  \"keywords\": []\n}"
     },
     "/src/index.js": {
-      "code": "import { DrupalState } from \"@gdwc/drupal-state\";\n\nconst store = new DrupalState({\n  apiRoot: \"https://live-contentacms.pantheonsite.io/api\",\n  debug: true\n});\n\nasync function main() {\n  // Add an include parameter to include relationship data\n  store.params.addInclude([\"category\"]);\n  const recipe = await store.getObject({\n    objectName: \"recipes\",\n    id: \"a542e833-edfe-44a3-a6f1-7358b115af4b\"\n  });\n\n  // Fields for the recipe category are now available on the recipe object.\n  const recipeCategory = recipe.category.name;\n\n  document.getElementById(\n    \"app\"\n  ).innerHTML = `See console log for additional debug info.\n<pre>Recipe category: ${JSON.stringify(recipeCategory, null, 2)}\nRecipe:\n${JSON.stringify(recipe, null, 2)}\n</pre>`;\n}\n\nmain();\n"
+      "code": "import { DrupalState } from \"@gdwc/drupal-state\";\nimport { DrupalJsonApiParams } from \"drupal-jsonapi-params\";\n\nconst store = new DrupalState({\n  apiBase: \"https://dev-ds-demo.pantheonsite.io\",\n  debug: true\n});\n\n// create a new instance of DrupalJsonApiParams\nconst params = new DrupalJsonApiParams();\n// or you may wish to use another library or construct your own query string parameters.\n// Make sure the query string is valid and does not start with a \"?\"\n\nasync function main() {\n  // Add an include parameter to include relationship data\n  params.addInclude([\"field_recipe_category\"]);\n  const recipe = await store.getObject({\n    objectName: \"node--recipe\",\n    id: \"33386d32-a87c-44b9-b66b-3dd0bfc38dca\",\n    params\n  });\n\n  // Fields for the recipe category are now available on the recipe object.\n  const recipeCategory = recipe.field_recipe_category[0].name;\n\n  document.getElementById(\n    \"app\"\n  ).innerHTML = `See console log for additional debug info.\n<pre>Recipe category: ${JSON.stringify(recipeCategory, null, 2)}\nRecipe:\n${JSON.stringify(recipe, null, 2)}\n</pre>`;\n}\n\nmain();\n"
     },
     "/src/styles.css": {
       "code": "body {\n  font-family: sans-serif;\n}\n"
     }
   },
+  "is_sse": false,
   "main": "/src/index.js"
 }

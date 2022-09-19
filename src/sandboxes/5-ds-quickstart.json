@@ -13,14 +13,15 @@
       "code": "<!DOCTYPE html>\n<html>\n\n<head>\n\t<title>Parcel Sandbox</title>\n\t<meta charset=\"UTF-8\" />\n</head>\n\n<body>\n\t<div id=\"app\"></div>\n\n\t<script src=\"src/index.js\">\n\t</script>\n</body>\n\n</html>"
     },
     "/package.json": {
-      "code": "{\n  \"name\": \"5-drupal-state-quickstart\",\n  \"version\": \"1.0.0\",\n  \"description\": \"\",\n  \"main\": \"index.html\",\n  \"scripts\": {\n    \"start\": \"parcel index.html --open\",\n    \"build\": \"parcel build index.html\"\n  },\n  \"dependencies\": {\n    \"@gdwc/drupal-state\": \"2.4.1\",\n    \"parcel-bundler\": \"^1.6.1\"\n  },\n  \"devDependencies\": {\n    \"@babel/core\": \"7.2.0\"\n  },\n  \"resolutions\": {\n    \"@babel/preset-env\": \"7.13.8\"\n  },\n  \"keywords\": []\n}"
+      "code": "{\n  \"name\": \"5-drupal-state-quickstart\",\n  \"version\": \"1.0.0\",\n  \"description\": \"\",\n  \"main\": \"index.html\",\n  \"scripts\": {\n    \"start\": \"parcel index.html --open\",\n    \"build\": \"parcel build index.html\"\n  },\n  \"dependencies\": {\n    \"@gdwc/drupal-state\": \"4.0.1\",\n    \"parcel-bundler\": \"^1.6.1\"\n  },\n  \"devDependencies\": {\n    \"@babel/core\": \"7.2.0\"\n  },\n  \"resolutions\": {\n    \"@babel/preset-env\": \"7.13.8\"\n  },\n  \"keywords\": []\n}"
     },
     "/src/index.js": {
-      "code": "import \"./styles.css\";\n\nimport { DrupalState } from \"@gdwc/drupal-state\";\n\nconst store = new DrupalState({\n  apiBase: \"https://live-contentacms.pantheonsite.io\",\n  apiPrefix: \"api\",\n  debug: true\n});\n\nasync function main() {\n  // If the object doesn't exist in local state, it will be fetched from the API,\n  // and then added to the store\n  const recipesFromApi = await store.getObject({ objectName: \"recipes\" });\n\n  // Since the object is already in local state as part of the recipes collection,\n  // this will be returned from the store without requiring a fetch from Drupal.\n  const recipeFromStore = await store.getObject({\n    objectName: \"recipes\",\n    id: \"a542e833-edfe-44a3-a6f1-7358b115af4b\"\n  });\n\n  document.getElementById(\n    \"app\"\n  ).innerHTML = `See console log for additional debug info.\n<pre>recipeFromStore: \n${JSON.stringify(recipeFromStore, null, 2)}\nrecipesFromApi:\n${JSON.stringify(recipesFromApi, null, 2)}\n  </pre>`;\n}\n\nmain();\n"
+      "code": "import \"./styles.css\";\n\nimport { DrupalState } from \"@gdwc/drupal-state\";\n\nconst store = new DrupalState({\n  apiBase: \"https://dev-ds-demo.pantheonsite.io\",\n  debug: true\n});\n\nasync function main() {\n  // If the object doesn't exist in local state, it will be fetched from the API,\n  // and then added to the store\n  const recipesFromApi = await store.getObject({ objectName: \"node--recipe\" });\n\n  // Since the object is already in local state as part of the recipes collection,\n  // this will be returned from the store without requiring a fetch from Drupal.\n  const recipeFromStore = await store.getObject({\n    objectName: \"node--recipe\",\n    id: \"33386d32-a87c-44b9-b66b-3dd0bfc38dca\"\n  });\n\n  document.getElementById(\n    \"app\"\n  ).innerHTML = `See console log for additional debug info.\n<pre>recipeFromStore: \n${JSON.stringify(recipeFromStore, null, 2)}\nrecipesFromApi:\n${JSON.stringify(recipesFromApi, null, 2)}\n  </pre>`;\n}\n\nmain();\n"
     },
     "/src/styles.css": {
       "code": "body {\n  font-family: sans-serif;\n}\n"
     }
   },
+  "is_sse": false,
   "main": "/src/index.js"
 }

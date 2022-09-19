@@ -13,7 +13,7 @@
       "code": "<!DOCTYPE html>\n<html>\n\n<head>\n\t<title>Parcel Sandbox</title>\n\t<meta charset=\"UTF-8\" />\n</head>\n\n<body>\n\t<div id=\"app\"></div>\n\n\t<script src=\"src/index.js\">\n\t</script>\n</body>\n\n</html>"
     },
     "/package.json": {
-      "code": "{\n  \"name\": \"7-drupal-state-by-path\",\n  \"version\": \"1.0.0\",\n  \"description\": \"\",\n  \"main\": \"index.html\",\n  \"scripts\": {\n    \"start\": \"parcel index.html --open\",\n    \"build\": \"parcel build index.html\"\n  },\n  \"dependencies\": {\n    \"@gdwc/drupal-state\": \"2.4.1\",\n    \"parcel-bundler\": \"^1.6.1\"\n  },\n  \"devDependencies\": {\n    \"@babel/core\": \"7.2.0\"\n  },\n  \"resolutions\": {\n    \"@babel/preset-env\": \"7.13.8\"\n  },\n  \"keywords\": []\n}"
+      "code": "{\n  \"name\": \"7-drupal-state-by-path\",\n  \"version\": \"1.0.0\",\n  \"description\": \"\",\n  \"main\": \"index.html\",\n  \"scripts\": {\n    \"start\": \"parcel index.html --open\",\n    \"build\": \"parcel build index.html\"\n  },\n  \"dependencies\": {\n    \"@gdwc/drupal-state\": \"4.0.1\",\n    \"parcel-bundler\": \"^1.6.1\"\n  },\n  \"devDependencies\": {\n    \"@babel/core\": \"7.2.0\"\n  },\n  \"resolutions\": {\n    \"@babel/preset-env\": \"7.13.8\"\n  },\n  \"keywords\": []\n}"
     },
     "/src/index.js": {
       "code": "import \"./styles.css\";\n\nimport { DrupalState } from \"@gdwc/drupal-state\";\n\nconst store = new DrupalState({\n  apiBase: \"https://dev-ds-demo.pantheonsite.io\",\n  debug: true\n});\n\nasync function main() {\n  const recipeByPath = await store.getObjectByPath({\n    objectName: \"node--recipe\",\n    path: \"/recipes/fiery-chili-sauce\"\n  });\n\n  document.getElementById(\"app\").innerHTML = `<pre>recipeByPath: \n${JSON.stringify(recipeByPath, null, 2)}\n  </pre>`;\n}\n\nmain();\n"
@@ -22,5 +22,6 @@
       "code": "body {\n  font-family: sans-serif;\n}\n"
     }
   },
+  "is_sse": false,
   "main": "/src/index.js"
 }
