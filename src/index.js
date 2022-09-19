@@ -99,14 +99,13 @@ const SlideFragments = () => (
 
 const Presentation = () => (
   <Deck theme={theme} template={template}>
-    <Slide
-      backgroundColor="tertiary"
-      backgroundImage={`url(${title.default})`}
-    ></Slide>
+    <Slide backgroundColor="tertiary" backgroundImage={`url(${title.default})`}>
+      Hey
+    </Slide>
     <MarkdownSlide>
       {`
         # Brian!
-        * I'm a Sr. Software Engineer at Pantheon
+        * I'm a Staff Engineer at Pantheon
         * I'm an Initiative coordinator for Drupal's Decoupled Menus Initiative
         * I live in the Chicago suburbs
         * I enjoy Drupal, JavaScript, and Nintendo
@@ -129,6 +128,7 @@ const Presentation = () => (
             results, reaching billions globally with Dynamic WordPress and
             Drupal sites. Learn more at Pantheon.io.
           </Text>
+          <Text>Front-end sites in early access!</Text>
         </Box>
       </Grid>
     </Slide>
@@ -138,7 +138,7 @@ const Presentation = () => (
         A simple data store for managing application state sourced from Drupal
         - Why it was created
         - Why you might use it
-        - Why it is important for the future of Drupal
+        - Why it (or something like it) is important for the future of Drupal
       `}
     </MarkdownSlide>
     <Slide
@@ -324,9 +324,9 @@ const translatePath = async (
 export default translatePath;
       `}</CodePane>
     </Slide>
-    <Slide>
+    {/* <Slide>
       <Sandbox config={sb8} openPaths={["/index.js"]}></Sandbox>
-    </Slide>
+    </Slide> */}
     <Slide>
       <Heading>Remember Generic Drupal Web Components?</Heading>
       <CodePane language="javascript">{`
@@ -385,7 +385,8 @@ export default translatePath;
 
         ## Possible Next Steps
         - Promote existing projects to the @drupal namespace
-          - Start with https://www.npmjs.com/package/drupal-jsonapi-params?
+          - Start with decoupled-menus-parser
+          - https://www.npmjs.com/package/drupal-jsonapi-params next?
         - Develop plan to build new SDK like utilities
           - https://www.drupal.org/project/ideas/issues/3277222
         - Documentation efforts within Decoupled Menus Initiative
