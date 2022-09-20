@@ -250,13 +250,16 @@ const Presentation = () => (
       <Heading>Avoiding Over-Fetching</Heading>
       <CodePane language="javascript">{`
         // Will give us all fields on the recipe and the category
-        /api/recipes/a542e833-edfe-44a3-a6f1-7358b115af4b?include=category
+        /api/recipes/a542e833-edfe-44a3-a6f1-7358b115af4b?include=field_recipe_category
 
         // Closer, but still returns all fields for the category
-        [...]?include=category&fields[recipes]=title,difficulty,instructions,category
+        [...]?include=field_recipe_category
+          &fields[node--recipe]=title,field_difficulty,field_recipe_instruction,field_recipe_category
 
         // Specify fields on category
-        [...]?include=category&fields[recipes]=title,difficulty,instructions,category&fields[categories]=name
+        [...]?include=field_recipe_category
+          &fields[node--recipe]=title,field_difficulty,field_recipe_instruction,field_recipe_category
+          &fields[taxonomy_term--recipe_category]=name
       `}</CodePane>
       <Text>Side note: drupal-jsonapi-params simplifies this</Text>
     </Slide>
@@ -363,9 +366,6 @@ export default translatePath;
     </Slide>
     <Slide>
       <Image src={wp.default} style={{ width: "auto", height: "100%" }} />
-    </Slide>
-    <Slide>
-      <Image src={sitecore.default} style={{ width: "auto", height: "100%" }} />
     </Slide>
     <Slide>
       <Image
