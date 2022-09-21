@@ -49,6 +49,12 @@ const sitecore = require("./assets/sitecore.png");
 const contentful = require("./assets/contentful.png");
 const pyramid = require("./assets/pyramid.png");
 const title = require("./assets/dc-title.png");
+const dnote1 = require("./assets/driesnote1.png");
+const dnote2 = require("./assets/driesnote2.png");
+const dnote3 = require("./assets/driesnote3.png");
+const dnote4 = require("./assets/driesnote4.png");
+const dnote5 = require("./assets/driesnote5.png");
+const dnote6 = require("./assets/driesnote6.png");
 
 const formidableLogo =
   "https://avatars2.githubusercontent.com/u/5078602?s=280&v=4";
@@ -396,8 +402,34 @@ export default translatePath;
         - Documentation efforts within Decoupled Menus Initiative
           - https://www.drupal.org/project/documentation/issues/3276081
 
-        ---
-
+        `}
+    </MarkdownSlideSet>
+    <Slide
+      backgroundColor="tertiary"
+      backgroundImage={`url(${dnote1.default})`}
+    ></Slide>
+    <Slide
+      backgroundColor="tertiary"
+      backgroundImage={`url(${dnote2.default})`}
+    ></Slide>
+    <Slide
+      backgroundColor="tertiary"
+      backgroundImage={`url(${dnote3.default})`}
+    ></Slide>
+    <Slide
+      backgroundColor="tertiary"
+      backgroundImage={`url(${dnote4.default})`}
+    ></Slide>
+    <Slide
+      backgroundColor="tertiary"
+      backgroundImage={`url(${dnote5.default})`}
+    ></Slide>
+    <Slide
+      backgroundColor="tertiary"
+      backgroundImage={`url(${dnote6.default})`}
+    ></Slide>
+    <MarkdownSlideSet>
+      {`
         ## Contribution @ DrupalCon (and beyond)
         - Issues in [Drupal State queue](https://www.drupal.org/project/issues/drupal_state?categories=All)
         - [Drupal JS Client Ideas queue issue](https://www.drupal.org/project/ideas/issues/3277222)
