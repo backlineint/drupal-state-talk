@@ -105,10 +105,9 @@ const SlideFragments = () => (
 
 const Presentation = () => (
   <Deck theme={theme} template={template}>
-    <Slide
-      backgroundColor="tertiary"
-      backgroundImage={`url(${title.default})`}
-    ></Slide>
+    <Slide>
+      <Image src={title.default} style={{ width: "auto", height: "95%" }} />
+    </Slide>
     <MarkdownSlide>
       {`
         # Brian!
